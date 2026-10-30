@@ -1,7 +1,7 @@
 set pagination off
 set confirm off
 set print pretty on
-break main
+break main.cpp:23
 run
 next
 printf "\n--- main: a initialized ---\n"
