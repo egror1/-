@@ -55,3 +55,9 @@
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/c++,visualstudiocode
+
+# Local build and editor files
+build/
+build-debug/
+.vscode/
+__pycache__/
