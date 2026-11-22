@@ -2,20 +2,20 @@ name: Lab 2 checks
 on: push
 jobs:
   build-and-test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
       - run: g++ -std=c++20 -Wall -Wextra -Werror -Wpedantic main.cpp -o cycles.out
       - run: python3 tests/test_cycles.py ./cycles.out
   clang-format:
-    runs-on: ubuntu-latest
-    container: ghcr.io/cpp-linter/clang-tools:18
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - run: clang-format --dry-run -Werror main.cpp
+      - run: sudo apt-get update && sudo apt-get install -y clang-format-18
+      - run: clang-format-18 --dry-run -Werror main.cpp
   clang-tidy:
-    runs-on: ubuntu-latest
-    container: ghcr.io/cpp-linter/clang-tools:18
+    runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
-      - run: clang-tidy main.cpp -- -std=c++20
+      - run: sudo apt-get update && sudo apt-get install -y clang-tidy-18
+      - run: clang-tidy-18 main.cpp -- -std=c++20
